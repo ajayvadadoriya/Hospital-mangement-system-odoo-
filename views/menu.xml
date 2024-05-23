@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--FOR CREATE MENU-->
+<odoo>
+<!--Construction Type-->
+<menuitem id="menu_construction_root"
+              name="Construction"
+              sequence="2"/>
+
+ <menuitem id="menu_construction"
+              name="Construction"
+              parent="menu_construction_root"
+              sequence="10"/>
+
+
+ <menuitem id="menu_construction_type"
+              name="Construction Type"
+              parent="menu_construction"
+              action="action_construction_type"
+              sequence="10"/>
+
+<!--<menuitem id="menu_projects_view"-->
+<!--              name="Project"-->
+<!--              parent="menu_construction_root"-->
+<!--              sequence="10"/>-->
+
+
+ <menuitem id="menu_project_note_view"
+              name="Project Note"
+              parent="menu_construction_root"
+              action="action_projects_notes"
+              sequence="10"/>
+
+
+
+
+
+</odoo>
