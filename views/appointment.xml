@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_hospital_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment.form</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+     <!--MAKE FORM VIEW -->
+            <form>
+                <header>
+                     <button  id="button_confirm" name="action_confirm" string="confirm" class="btn-primary" type="object" confirm="ARE YOU SURE?"/>
+                     <button  id="button_done" name="action_done" string="Mark As Done" class="btn-primary" type="object"/>
+                     <button  id="button_draft" name="action_draft" string="Set To Draft" class="btn-primary" type="object"/>
+                     <button  id="button_cancel" name="action_cancel" string="Cancel" class="btn-primary" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="age"/>
+                            <field name="gender" readonly="1"/>
+                            <field name="product"/>
+                        </group>
+                        <group>
+                            <field name="capitalize_name"/>
+                            <field name="appointment_date"/>
+                            <field name="checkup_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prescription">
+                            <group>
+                                <field name="doctor_id"/>
+                                <field name="note"/>
+                                <field name="note1"/>
+                            </group>
+                        </page>
+                        <page string="Pharmacy">
+                            <field name="prescription_line_ids">
+                                <tree>
+                                    <field name="medicine_name"/>
+                                    <field name="qty"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="medicine_name"/>
+                                        <field name="qty"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+    <!--MAKE TREE VIEW -->
+    <record id="view_hospital_appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="ref1"/>
+                <field name="patient_id"/>
+                <field name="age"/>
+                <field name="appointment_date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_hospital_appointment" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+</odoo>

@@ -1,23 +1,24 @@
 # --------------FOR CREATE MODULS -------------
 {
-    'name': 'Applo Hospital Management',
+    'name': 'Hospital Management',
     'author': 'Ajay Tech',
     'website': 'www.Hospital.com',
     'summary': 'Hospital Management Software',
     'sequence': -100,
-    'depends': ['project','analytic','hr'
-                ],
+    'depends': ['mail', 'product', 'report_xlsx'],
     'application': True,
     'data': [
         'security/ir.model.access.csv',
-        'security/security_access.xml',
-        'reports/report.xml',
-        'reports/construction_report.xml',
-        'views/construction.xml',
-        'views/task.xml',
-        'views/project.xml',
+        'data/sequence.xml',
+        'wizard/create_appointment_view.xml',
+        'report/patient_card.xml',
+        'report/wizard_report.xml',
+        'report/reports.xml',
+        'views/appointment.xml',
+        'views/patient.xml',
+        'views/kids.xml',
+        'views/doctor.xml',
         'views/menu.xml',
-
 
 
     ]

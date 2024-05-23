@@ -1,3 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hospital_construction,access_hospital_construction,applo_hospital.model_hospital_construction,base.group_user,1,1,1,1
-access_hospital_project_note,access_hospital_project_note,applo_hospital.model_hospital_project_note,base.group_user,1,1,1,1
+new_hospital.access_hospital_patient,access_hospital_patient,new_hospital.model_hospital_patient,base.group_user,1,1,1,1
+new_hospital.access_hospital_doctor,access_hospital_doctor,new_hospital.model_hospital_doctor,base.group_user,1,1,1,1
+new_hospital.access_hospital_appointment,access_hospital_appointment,new_hospital.model_hospital_appointment,base.group_user,1,1,1,1
+new_hospital.access_hospital_kids,access_hospital_kids,new_hospital.model_hospital_kids,base.group_user,1,1,1,1
+new_hospital.access_create_appointment_wizard,access_create_appointment_wizard,new_hospital.model_create_appointment_wizard,base.group_user,1,1,1,1
+new_hospital.access_appointment_prescription_lines,access_appointment_prescription_lines,new_hospital.model_appointment_prescription_lines,base.group_user,1,1,1,1

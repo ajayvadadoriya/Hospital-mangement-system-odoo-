@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <!--    <template id="report_patient_cards">-->
+    <!--        <t t-call="web.html_container">-->
+    <!--            <t t-foreach="docs" t-as="doc">-->
+    <!--                <h2>Patient Card</h2>-->
+    <!--            </t>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+
+    <template id="report_patient">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <br/>
+                        <br/>
+                        <ul>
+                            <li>name:
+                                <span t-field="doc.ref"/>
+                            </li>
+                            <li>parent detail:
+                                <span t-field="doc.pname"/>
+                            </li>
+                            <li>age:
+                                <span t-field="doc.gender"/>
+                            </li>
+                            <li>is_child?:
+                                <span t-field="doc.dob"/>
+                            </li>
+                            <li>gender:
+                                <span t-field="doc.address"/>
+                            </li>
+                            <li>note:
+                                <span t-field="doc.phone"/>
+                            </li>
+                            <li>doctor:
+                                <span t-field="doc.blood"/>
+                            </li>
+                            <li>tags:
+                                <span t-field="doc.age"/>
+                            </li>
+<!--                            #FOR MANY2MANY FIELD-->
+                            <t t-foreach="doc.tag_ids" t-as="v">
+                                <span t-field="doc.name"/>
+                            </t>
+                        </ul>
+<!--                        <table width="100%">-->
+<!--                            <tr>-->
+<!--                                <th width="30%">name</th>-->
+<!--                                <th width="30%">parent detail</th>-->
+<!--                                <th width="30%">age</th>-->
+<!--                                <th width="30%">is_child?</th>-->
+<!--                                <th width="30%">gender</th>-->
+<!--                                <th width="30%">note</th>-->
+<!--                                <th width="30%">doctor</th>-->
+<!--                                <th width="30%">tags</th>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td width="30%"><span t-field="doc.name"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.parent_detail.name"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.age"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.is_child"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.gender"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.notes"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.doctor_id.name"/></td>-->
+<!--                                <td width="30%"><span t-field="doc.tag_ids.name"/></td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+
+                    </div>
+<!--                    <h2>Test Print</h2>-->
+<!--                    name:-->
+<!--                    <t t-esc="doc.name"/>-->
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

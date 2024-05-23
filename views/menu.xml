@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--FOR CREATE MENU-->
 <odoo>
-<!--Construction Type-->
-<menuitem id="menu_construction_root"
-              name="Construction"
-              sequence="2"/>
 
- <menuitem id="menu_construction"
-              name="Construction"
-              parent="menu_construction_root"
+    <!-- MAIN MENU IS A HOSPITAL -->
+    <menuitem id="menu_hospital_root"
+              name="Hospital"
               sequence="10"/>
-
-
- <menuitem id="menu_construction_type"
-              name="Construction Type"
-              parent="menu_construction"
-              action="action_construction_type"
+<!-- SUB MENU OF HOSPITAL -->
+    <menuitem id="menu_hospital_operations"
+              name="Operations"
+              parent="menu_hospital_root"
               sequence="10"/>
-
-<!--<menuitem id="menu_projects_view"-->
-<!--              name="Project"-->
-<!--              parent="menu_construction_root"-->
-<!--              sequence="10"/>-->
-
-
- <menuitem id="menu_project_note_view"
-              name="Project Note"
-              parent="menu_construction_root"
-              action="action_projects_notes"
+<!-- SUB MENU OF OPERATION -->
+    <menuitem id="menu_patients"
+              name="Patients"
+              parent="menu_hospital_operations"
+              action="action_hospital_patient"
               sequence="10"/>
-
-
-
-
-
+<!-- DOCTOR -->
+    <menuitem id="menu_hospital_master_data"
+              name="Master Data"
+              parent="menu_hospital_root"
+              sequence="10"/>
+    <menuitem id="menu_doctor"
+              name="Doctor"
+              parent="menu_hospital_master_data"
+              action="action_hospital_doctor"
+              sequence="10"/>
+<!-- APPOINTMENT -->
+    <menuitem id="menu_hospital_for_appointments"
+              name="Appointment"
+              parent="menu_hospital_root"
+              sequence="10"/>
+    <menuitem id="menu_appointments"
+              name="Appointment_List"
+              parent="menu_hospital_for_appointments"
+              action="action_hospital_appointment"
+              sequence="10"/>
+<!-- CREATE APPOINTMENT -->
+     <menuitem id="menu_create_appointments"
+              name="Create Appointment"
+              parent="menu_hospital_root"
+              sequence="20"/>
+<!-- KIDS -->
+    <menuitem id="menu_hospital_operations"
+              name="Operations"
+              parent="menu_hospital_root"
+              sequence="10"/>
+    <menuitem id="menu_patients_kids"
+              name="Kids"
+              parent="menu_hospital_operations"
+              action="action_hospital_kids"
+              sequence="20"/>
 </odoo>
