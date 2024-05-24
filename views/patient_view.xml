@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="hospital_patient_form">
+                <header>
+                    <button name="send_ref_by_email" string="Send Info By Email" type="object" data-hotkey="g"/>
+                    <button id="button_print_report" name="%(report_patient_cards1)d" string="PRINT PATIENT CARD"
+                            class="btn-primary" type="action"/>
+                </header>
+                <sheet>
+                    <h4>
+                        <field name="ref" readonly="1"/>
+                    </h4>
+                    <field name="patient_image" widget="image" class="oe_avatar"/>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="first_name" string="First Name" class="oe_edit_only"/>
+                            <field name="first_name"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="middle_name" string="Middle Name" class="oe_edit_only"/>
+                            <field name="middle_name"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="last_name" string="Last Name" class="oe_edit_only"/>
+                            <field name="last_name"/>
+                        </div>
+                    </div>
+                    <group string="Basic Information">
+                        <group>
+                            <field name="gender"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <group string="Address Information">
+                        <group>
+                            <field name="address"/>
+                            <field name="city"/>
+                        </group>
+                        <group>
+                            <field name="pin_code"/>
+                        </group>
+                    </group>
+                    <group string="Other Information">
+                        <group>
+                            <field name="marital_status"/>
+                            <field name="partner_name" attrs="{'invisible':[('marital_status', '!=', 'married')],
+                                                                'required': [('marital_status', '=', 'married')]
+                                                            }"/>
+                        </group>
+                        <group>
+                            <field name="appointment_count"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General Information">
+                            <group string="PATIENT GENERAL INFORMATION">
+                                <group>
+                                    <field name="blood"/>
+                                    <field name="ethnic"/>
+                                    <field name="insurance"/>
+                                </group>
+                                <group>
+                                    <field name="family"/>
+                                    <field name="recive"/>
+                                    <field name="dr"/>
+                                </group>
+                            </group>
+                            <group string="DECEASED INFORMATION">
+                                <field name="dece"/>
+                            </group>
+                            <group string="PTIENT INFORMATION">
+                                <field name="note" placeholder="Extra information...."/>
+                            </group>
+                        </page>
+                        <page string="Diseases">
+                            <field name="disease_ids"/>
+                        </page>
+                        <page string="Medication">
+                            <field name="medicament_ids"/>
+                        </page>
+                        <page string="Vaccinations">
+                            <field name="vaccination_ids"/>
+                        </page>
+                        <page string="Lab test">
+                            <field name="labtest_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_patient_tree">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="dr"/>
+                <field name="date_of_birth"/>
+                <field name="dece"/>
+                <!-- <field name="partner_name"/> -->
+                <!-- <field name="partner_relation"/>  -->
+            </tree>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="hospital_patient_search">
+                <!-- Normal Search -->
+                <field name="first_name"
+                       filter_domain="['|','|', ('first_name','ilike',self), ('age','ilike',self), ('gender','ilike',self)]"
+                       string="Patient Search"/>
+                <!-- Default Filter Button Menu Search -->
+                <filter name="gender_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="gender_female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <!-- <separator/>
+                <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', 10)]"/> -->
+                <separator/>
+                <filter name="filter_archived" string="Archived" domain="[('active', '=', False)]"/>
+                <!-- Default Group Button Menu Search -->
+                <group expand="0" string="Group Search">
+                    <filter name="group_by_gender" string="Gender" context="{'group_by':'gender'}"/>
+                </group>
+                <searchpanel>
+                    <field name="gender" icon="fa-users" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Hospital Patient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a Patient!!!!!!
+            </p>
+        </field>
+    </record>
+
+</odoo>

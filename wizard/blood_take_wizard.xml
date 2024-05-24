@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_blood_take_view_form" model="ir.ui.view">
+        <field name="name">create.blood.take.wizard.form</field>
+        <field name="model">create.blood.take.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="donors_id"/>
+                    <field name="blood_group"/>
+                    <field name="blood_type"/>
+                    <field name="transfer_date"/>
+                    <field name="quantity"/>
+                </group>
+                <footer>
+                    <button id="button_create_blood_take" name="action_create_blood_take" string="CONFIRM TRANSACTION" class="btn-primary"
+                            type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_blood_take" model="ir.actions.act_window">
+        <field name="name">Buy Blood</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.blood.take.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+
+
+
+
+
+
+</odoo>
+

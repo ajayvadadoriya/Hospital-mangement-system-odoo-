@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_patient_new_born_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h1>NEWBORN Card</h1>
+                        <ul>
+                            <li>ID:
+                                <span t-field="doc.ref"/>
+                            </li>
+                            <li>Gender:
+                                <span t-field="doc.gender"/>
+                            </li>
+                            <li>Name:
+                                <span t-field="doc.baby_name"/>
+                            </li>
+                            <li>Mother:
+                                <span t-field="doc.mother"/>
+                            </li>
+                            <li>DOB:
+                                <span t-field="doc.dob"/>
+                            </li>
+                            <li>Weight(grams):
+                                <span t-field="doc.weight"/>
+                            </li>
+                            <li>Height:
+                                <span t-field="doc.length"/>
+                            </li>
+<!--                            #FOR MANY2MANY FIELD-->
+<!--                            <t t-foreach="doc.tag_ids" t-as="v">-->
+<!--                                <span t-field="doc.name"/>-->
+<!--                            </t>-->
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

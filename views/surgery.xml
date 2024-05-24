@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_surgery_form" model="ir.ui.view">
+        <field name="name">hospital.surgery.form</field>
+        <field name="model">hospital.surgery</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="code_surgery"/>
+                        <field name="patient_id"/>
+                        <field name="description"/>
+                        <field name="base_condition"/>
+                        <field name="classification"/>
+                        <field name="operating_room"/>
+                    </group>
+                    <group>
+                        <field name="dos"/>
+                        <field name="eos"/>
+                        <field name="patient_age"/>
+                        <field name="doctor"/>
+                        <field name="extra_info"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_surgery_tree" model="ir.ui.view">
+        <field name="name">hospital.surgery.tree</field>
+        <field name="model">hospital.surgery</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code_surgery"/>
+                <field name="patient_id"/>
+                <field name="description"/>
+                <field name="base_condition"/>
+                <field name="classification"/>
+                <field name="operating_room"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hospital_surgery" model="ir.actions.act_window">
+        <field name="name">Hospital Surgery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.surgery</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+    </record>
+
+
+   <menuitem id="hospital_surgery_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Surgery"
+              sequence="8"
+              parent="hospital_root_menu"
+             />
+    <menuitem id="hospital_surgery_node_menu"
+              name="Surgery Lists"
+              sequence="0"
+              parent="hospital_surgery_root_menu"
+              action="action_hospital_surgery"
+             />
+
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_patient_cards1" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_data</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+     <record id="report_patient_diseases_cards1" model="ir.actions.report">
+        <field name="name">Patient Diseases Report</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_diseases_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_diseases_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <record id="report_patient_new_born_cards1" model="ir.actions.report">
+        <field name="name">New Born Card Report</field>
+        <field name="model">hospital.newborn</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_new_born_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_new_born_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_newborn"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_medication_cards1" model="ir.actions.report">
+        <field name="name">Patient Medication History</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_medication_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_medication_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_vaccination_cards1" model="ir.actions.report">
+        <field name="name">Patients Vaccinations History</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_vaccination_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_vaccination_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+     <record id="report_patient_visiting_cards1" model="ir.actions.report">
+        <field name="name">Visiting Card</field>
+        <field name="model">patient.hospitalization</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_visiting_card</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_visiting_card</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_patient_hospitalization"/>
+        <field name="binding_type">report</field>
+    </record>
+
+     <record id="report_patient_labtest_cards1" model="ir.actions.report">
+        <field name="name">Patients Lab Test Report</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_labtest_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_labtest_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_prescription_cards1" model="ir.actions.report">
+        <field name="name">Prescription Report</field>
+        <field name="model">patient.prescription</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_prescription_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_prescription_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_patient_prescription"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_appointment_cards1" model="ir.actions.report">
+        <field name="name">Appointment Report</field>
+        <field name="model">hospital.appointment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_appointment_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_appointment_data</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_hospital_appointment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+     <record id="report_deceased_patient_cards1" model="ir.actions.report">
+        <field name="name">Patient Deceased Report</field>
+        <field name="model">hospital.deceased.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Ramsam_Multispeciality_Hospital.report_patient_deceased_data</field>
+        <field name="report_file">Ramsam_Multispeciality_Hospital.report_patient_deceased_data</field>
+        <field name="binding_model_id" ref="model_hospital_deceased_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

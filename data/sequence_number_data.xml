@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hospital_patient_sequence" model="ir.sequence">
+        <field name="name">Hospital Patient Sequence</field>
+        <field name="code">hospital.patient.sequence</field>
+        <field name="prefix">VMSH-P</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_newborn_sequence" model="ir.sequence">
+        <field name="name">New Born Sequence</field>
+        <field name="code">hospital.newborn.sequence</field>
+        <field name="prefix">NEW</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+     <record id="hospital_lab_test_result_sequence" model="ir.sequence">
+        <field name="name">Lab Test Result</field>
+        <field name="code">hospital.lab.test.result.sequence</field>
+        <field name="prefix">TEST</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_lab_test_result_liens_sequence" model="ir.sequence">
+        <field name="name">Lab Test Result Lines</field>
+        <field name="code">hospital.lab.test.resultlines.sequence</field>
+        <field name="padding">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_medical_service_sequence" model="ir.sequence">
+        <field name="name">Medical Service Lines</field>
+        <field name="code">medical.service.sequence</field>
+        <field name="prefix">MEDSER</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_prescription_sequence" model="ir.sequence">
+        <field name="name">Hospital Prescription Sequence</field>
+        <field name="code">patient.prescription.sequence</field>
+        <field name="prefix">PRES2023-P</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+
+    <record id="hospital_imagingtest_sequence" model="ir.sequence">
+        <field name="name">Hospital Imagingtest Sequence</field>
+        <field name="code">hospital.imagingtest.sequence</field>
+        <field name="prefix">IMG-P</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+
+    <record id="hospital_imaging_sequence" model="ir.sequence">
+        <field name="name">Hospital Imaging Sequence</field>
+        <field name="code">hospital.imaging.sequence</field>
+        <field name="prefix">IMG-P</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="patient_hospitalization_sequence" model="ir.sequence">
+        <field name="name">Patient Hospitalization Sequence</field>
+        <field name="code">patient.hospitalization.sequence</field>
+        <field name="prefix">INPAC</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_employee_sequence" model="ir.sequence">
+        <field name="name">Hospital Employee Sequence</field>
+        <field name="code">hospital.employee.sequence</field>
+        <field name="prefix">VMSH-Emp</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_doctor_sequence" model="ir.sequence">
+        <field name="name">Hospital Doctor Sequence</field>
+        <field name="code">hospital.doctor.sequence</field>
+        <field name="prefix">VMSH-Doc</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="hospital_appointment_sequence" model="ir.sequence">
+        <field name="name">Hospital Appointment Sequence</field>
+        <field name="code">hospital.appointment.sequence</field>
+        <field name="prefix">APT-Doc</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

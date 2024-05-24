@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_patient_labtest_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs.labtest_ids" t-as="doc">
+                    <div class="page">
+                        <h1>Patient Medication History</h1>
+                        <ul>
+                            <li>Patient:
+                                <span t-field="doc.patient_name"/>
+                            </li>
+                            <li>Patient ID:
+                                <span t-field="doc.patient_id"/>
+                            </li>
+                            <li>Age:
+                                <span t-field="doc.patient_age"/>
+                            </li>
+                            <li>Sex:
+                                <span t-field="doc.sex"/>
+                            </li>
+                            <li>Test Type:
+                                <span t-field="doc.name"/>
+                            </li>
+                             <li>Date:
+                                <span t-field="doc.date"/>
+                            </li>
+                            <li>Doctor Name:
+                                <span t-field="doc.doctor"/>
+                            </li>
+                             <li>State:
+                                <span t-field="doc.state"/>
+                            </li>
+
+<!--                            #FOR MANY2MANY FIELD-->
+<!--                            <t t-foreach="doc.tag_ids" t-as="v">-->
+<!--                                <span t-field="doc.name"/>-->
+<!--                            </t>-->
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

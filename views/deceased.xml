@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_deceased_patient_form" model="ir.ui.view">
+        <field name="name">hospital.deceased.patient.form</field>
+        <field name="model">hospital.deceased.patient</field>
+        <field name="arch" type="xml">
+            <form string="hospital_deceased_patient_form">
+                <header>
+                    <!--                    <button name="send_ref_by_email" string="Send Info By Email" type="object" data-hotkey="g"/>-->
+                    <button id="button_print_report" name="%(report_deceased_patient_cards1)d"
+                            string="PRINT PATIENT CARD" class="btn-primary" type="action"/>
+                </header>
+                <sheet>
+                    <h4>
+                        <field name="rref" readonly="1"/>
+                    </h4>
+                    <field name="rpatient_image" widget="image" class="oe_avatar"/>
+                    <group string="Basic Information">
+                        <group>
+                            <field name="p_id" widget="many2one"/>
+                            <field name="rgender"/>
+                            <field name="rphone"/>
+                        </group>
+                        <group>
+                            <field name="dob"/>
+                            <field name="rage"/>
+                            <field name="remail"/>
+                        </group>
+                    </group>
+                    <group string="Address Information">
+                        <group>
+                            <field name="raddress"/>
+                            <field name="rcity"/>
+                        </group>
+                        <group>
+                            <field name="rpin_code"/>
+                        </group>
+                    </group>
+                    <group string="Other Information">
+                        <group>
+                            <field name="rmarital_status"/>
+                            <field name="rpartner_name" attrs="{'invisible':[('rmarital_status', '!=', 'married')],
+                                                                'required': [('rmarital_status', '=', 'married')]
+                                                            }"/>
+                        </group>
+                        <group>
+                            <field name="rappointment_count"/>
+                            <field name="ractive" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General Information">
+                            <group string="PATIENT GENERAL INFORMATION">
+                                <group>
+                                    <field name="rblood"/>
+                                    <field name="rethnic"/>
+                                    <field name="rinsurance"/>
+                                </group>
+                                <group>
+                                    <field name="rfamily_id"/>
+                                    <field name="rrecive"/>
+                                    <field name="rdr"/>
+                                </group>
+                            </group>
+                            <group string="DECEASED INFORMATION">
+                                <field name="rdece"/>
+                                <field name="date_od_deth" attrs="{'invisible':[('rdece', '!=', True)],
+                                                                'required': [('rdece', '=', True)]
+                                                            }"/>
+                                <field name="cause" attrs="{'invisible':[('rdece', '!=', True)],
+                                                                'required': [('rdece', '=', True)]
+                                                            }"/>
+                            </group>
+                            <group string="PTIENT INFORMATION">
+                                <field name="rnote" placeholder="Extra information...."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_deceased_patient_tree" model="ir.ui.view">
+        <field name="name">hospital.deceased.patient.tree</field>
+        <field name="model">hospital.deceased.patient</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_deceased_patient_tree">
+                <field name="rref"/>
+                <field name="p_id"/>
+                <field name="rgender"/>
+                <field name="rdr"/>
+                <field name="dob"/>
+                <field name="rdece"/>
+                <!-- <field name="partner_name"/> -->
+                <!-- <field name="partner_relation"/>  -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_deceased_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Hospital Deceased Patient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.deceased.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a Patient!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+
+
+</odoo>

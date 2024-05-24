@@ -1,27 +1,39 @@
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class HospitalDoctor(models.Model):
     _name = "hospital.doctor"
-    _inherit = 'mail.thread'
-    _description = "Doctor Records"
+    _description = "Hospital Doctors Details"
+    _rec_name="name"
+    name = fields.Char(compute='doctor_full_name', tracking=True)
+    ref = fields.Char(string="Ref Code", tracking=True)
+    first_name = fields.Char(string="First Name", tracking=True)
+    middle_name = fields.Char(string="Middle Name", tracking=True)
+    last_name = fields.Char(string="Last Name", tracking=True)
+    date_of_birth = fields.Date(string="Birth Date", tracking=True)
+    age = fields.Integer(string="Doctor Age", tracking=True)
+    gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", tracking=True)
+    phone = fields.Char(string="Contact Number", tracking=True)
+    address = fields.Char(string="Address", tracking=True)
+    city = fields.Char(string="City", tracking=True)
+    pin_code = fields.Char(string="Pin Code", tracking=True)
+    active = fields.Boolean(string="Active", default=True, tracking=True)
+    doctor_image = fields.Image(string="Doctor Image")
+    education = fields.Char(string="Education", tracking=True)
+    specialization = fields.Char(string="Specialization", tracking=True)
+    experience = fields.Char(string="Experience", tracking=True)
+    join_date = fields.Date(string="Join Date", tracking=True)
 
+    @api.depends('first_name', 'last_name')
+    def doctor_full_name(self):
+        for rec in self:
+            rec.name = (rec.first_name or '') + ' ' + (rec.last_name or '')
 
-    name = fields.Char(string='Name', required=True, tracking=True)
-    age = fields.Integer(string="Age")
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string="Gender", tracking=True)
-    capitalize_name = fields.Char(string='Capitalize Name', compute='_compute_capitalize_name', store=True)
-    active = fields.Boolean(default=True)
-    @api.depends('name')
-    def _compute_capitalize_name(self):
-        if self.name:
-            self.capitalize_name = self.name.upper()
-        else:
-            self.capitalize_name = ' '
+    def name_get(self):
+        return [(rec.id, "[%s] %s" % (rec.ref, rec.name)) for rec in self]
 
-    # def name_get(self):
-    #     result = []
-    #     for rec in self:
-    #         result.append((rec.id, f'{rec.ref} - {rec.name}'))
-    #     return result
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.doctor.sequence')
+        return super(HospitalDoctor, self).create(vals)
 

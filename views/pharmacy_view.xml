@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_pharmacy_form" model="ir.ui.view">
+        <field name="name">hospital.pharmacy.form</field>
+        <field name="model">hospital.pharmacy</field>
+        <field name="arch" type="xml">
+            <form string="hospital_pharmacy_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="manufacturer"/>
+                            <field name="batch_no"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="unit_price"/>
+                            <field name="mfg_date"/>
+                            <field name="exp_date"/>
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_pharmacy_tree" model="ir.ui.view">
+        <field name="name">hospital.pharmacy.tree</field>
+        <field name="model">hospital.pharmacy</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_pharmacy_tree">
+                <field name="name"/>
+                <field name="manufacturer"/>
+                <field name="batch_no"/>
+                <field name="quantity"/>
+                <field name="unit_price"/>
+                <field name="exp_date"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="view_hospital_pharmacy_search" model="ir.ui.view">
+        <field name="name">hospital.pharmacy.search</field>
+        <field name="model">hospital.pharmacy</field>
+        <field name="arch" type="xml">
+            <search string="hospital_pharmacy_search">
+
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_hospital_pharmacy" model="ir.actions.act_window">
+        <field name="name">Hospital Pharmacy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.pharmacy</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a pharmacy!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

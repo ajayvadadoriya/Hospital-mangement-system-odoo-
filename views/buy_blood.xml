@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_blood_buy_view_form" model="ir.ui.view">
+        <field name="name">blood.buy.form</field>
+        <field name="model">blood.buy</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="patient_id"/>
+                    <field name="buy_date"/>
+                    <field name="blood_group"/>
+                    <field name="qty"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_blood_buy_tree" model="ir.ui.view">
+        <field name="name">blood.buy.tree</field>
+        <field name="model">blood.buy</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="buy_date"/>
+                <field name="blood_group"/>
+                <field name="qty"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_blood_buy" model="ir.actions.act_window">
+        <field name="name">Blood buy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">blood.buy</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hospital_blood_buy_menu"
+              name="Buy Blood"
+              sequence="3"
+              parent="hospital_blood_root_menu"
+              action="action_blood_buy"
+    />
+</odoo>
+

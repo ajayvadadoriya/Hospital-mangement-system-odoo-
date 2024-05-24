@@ -1,88 +1,81 @@
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
-#---------------CLASS AND IT'S ATTRIBUTES------------------
-class Hospitalpatient(models.Model):
+from datetime import date
+from odoo import api, fields, models
+
+class HospitalPatient(models.Model):
     _name = "hospital.patient"
-    _inherit = 'mail.thread'
-    _description = "Patient Records"
-#---------------ATTRIBUTE OF PATIENT-----------------------------------------
-    image = fields.Image(string="Image")
-    name = fields.Char(string='Name', required=True, tracking=True)
-    age = fields.Integer(string="Age", tracking=True)
-    is_child = fields.Boolean(string="Is child ?", tracking=True)
-    notes = fields.Text(string="Notes")
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], string="Gender", tracking=True)
-    capitalize_name = fields.Char(string='Capitalize Name', compute='_compute_capitalize_name', store=True)
-    ref = fields.Char(string="Sequence Number",  required=True, copy=False, readonly=True,  default=lambda self: _('New'))
-    state = fields.Selection([
-        ('draft', "Draft"), ('confirm', "Confirm"), ('done', "Done"), ('canceled', "Canceled")], string="Status", default='draft', tracking=True)
-    parent_detail = fields.Many2one('res.partner', string="Parent Detail")
-    doctor_id = fields.Many2one('hospital.doctor', string="Doctor")
-    tag_ids = fields.Many2many('res.partner.category', 'hospital_patient_tag_rel', 'patient_id', 'tag_id', string="Tags")
-    appointment_ids = fields.One2many('hospital.appointment', 'patient_id', string="Appointment")
-    appointment_count=fields.Integer(string="Appointment Count", compute='compute_appointment_count')
-# --------FOR CREATE MOVE TO STATUSBAR--------------------------------
-    def action_confirm(self):
-        self.state = 'confirm'
+    _inherit = ['mail.thread','mail.activity.mixin']
+    _description ="Hospital Patients Details"
 
-    def action_done(self):
-        self.state = 'done'
-
-    def action_draft(self):
-        self.state = 'draft'
-
-    def action_cancel(self):
-        self.state = 'canceled'
-# --------FOR CREATE SEQUENCE--------------------------------
-    @api.model_create_multi
-    def create(self, vls_list):
-        for vls in vls_list:
-            vls['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
-        return super(Hospitalpatient, self).create(vls_list)
+    name = fields.Char(compute='patient_full_name', tracking=True)
+    first_name = fields.Char(string="First Name", tracking=True)
+    middle_name = fields.Char(string="Middle Name", tracking=True)
+    last_name = fields.Char(string="Last Name", tracking=True)
+    date_of_birth = fields.Date(string="Birth Date", tracking=True)
+    age = fields.Integer(string="Patient Age", compute="age_count", tracking=True, store=True)
+    gender = fields.Selection([('male','Male'),('female','Female')], string="Gender", tracking=True)
+    phone = fields.Char(string="Contact Number", tracking=True)
+    email = fields.Char(string="Email", tracking=True)
+    address = fields.Char(string="Address", tracking=True)
+    city = fields.Char(string="City", tracking=True)
+    pin_code = fields.Char(string="Pin Code", tracking=True)
+    ref = fields.Char(string="Ref Code", tracking=True)
+    active = fields.Boolean(string="Active", default=True, tracking=True)
+    appointment_count = fields.Integer(string="Visited Count", compute="appointment_count_fun")
+    marital_status = fields.Selection([('married', 'Married'),('unmarried', 'Unmarried')], string="Marital Status")
+    patient_image = fields.Image(string="Patient Image")
+    partner_name = fields.Char(string="Partner Name")
+    blood = fields.Selection([('a+', 'A+'),('o+', 'O+'),('b+', 'B+'),('ab+', 'AB+'),('a-', 'A-'),('o-', 'O-'),('b-', 'B-'),('ab-', 'AB-')], string="Blood Group")
+    ethnic=fields.Char(string="Ethnic Group")
+    insurance=fields.Char(string="Insurance")
+    recive=fields.Integer(string="Receivable")
+    family= fields.Char(string="Family")
+    dece=fields.Boolean(string="Deceased")
+    note=fields.Text(string="")
+    dr=fields.Many2one('hospital.doctor',string="Primary Care Doctor")
+    disease_ids=fields.One2many('hospital.diseases','patient_id',string="Diseases")
+    medicament_ids=fields.One2many('hospital.form','patients_id',string="Medication")
+    vaccination_ids=fields.One2many('hospital.vaccination','patients_id',string="Vaccination")
+    labtest_ids=fields.One2many('hospital.labtest','patients_id',string="Labtest")
 
 
-    #--------FOR CAPITALIZATION--------------------------------
-    @api.depends('name')
-    def _compute_capitalize_name(self):
-        if self.name:
-            self.capitalize_name = self.name.upper()
-        else:
-            self.capitalize_name = ''
+    _sql_constraints = [
+        ('name_unique', 'unique (first_name,last_name,phone)', 'Name and Phone is already exists...!')
+    ]
 
-#------------FOR VALIDATION----------------------------------
-    @api.constrains('is_child', 'age')
-    def _check_child_age(self):
+    @api.depends('first_name','last_name')
+    def patient_full_name(self):
         for rec in self:
-            if rec.is_child and rec.age == 0:
-                raise ValidationError(_("Age has to be recorded!"))
+            rec.name = (rec.first_name or '')+' '+(rec.last_name or '')
 
-#-----------FOR AUTO CLICK ON IS CHILD , IF AGE <=10------------------------------
-    @api.onchange('age')
-    def _onchange_age(self):
-        if self.age <= 10:
-            self.is_child = True
-        else:
-            self.is_child = False
-
-    @api.depends('name')
-    def _compute_capitalize_name(self):
-        if self.name:
-            self.capitalize_name = self.name.upper()
-        else:
-            self.capitalize_name = ''
-
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient.sequence')
+        return super(HospitalPatient, self).create(vals)
+    
+    
     @api.depends('appointment_count')
-    def compute_appointment_count(self):
+    def appointment_count_fun(self):
         for rec in self:
-            appointment_count = self.env['hospital.appointment'].search_count([('patient_id','=',rec.id)])
-            rec.appointment_count = appointment_count
+            rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
 
-    def action_open_appointment(self):
-        return {
-            'name': 'Appointment',
-            'type': 'ir.actions.act_window',
-            'res_model': 'hospital.appointment',
-            'view_mode': 'tree,form',
-            'domain': [('patient_id', '=', self.id)],
-            'target': 'current'
-        }
+    @api.depends('date_of_birth')
+    def age_count(self):
+        for rec in self:
+            today = date.today()
+            if rec.date_of_birth:
+                rec.age = today.year - rec.date_of_birth.year
+            else:
+                rec.age = 0
+
+    def name_get(self):
+        return [(rec.id, "[%s] %s" %(rec.ref, rec.name)) for rec in self]
+        # patient_list = []
+        # for rec in self:
+        #     name = rec.ref + ' ' + rec.name
+        #     patient_list.append((rec.id, rec.first_name))
+        # return patient_list
+
+    def send_ref_by_email(self):
+       template = self.env.ref('Ramsam_Multispeciality_Hospital.patient_reg_temp')
+       for rec in self:
+           template.send_mail(rec.id, force_send=True)

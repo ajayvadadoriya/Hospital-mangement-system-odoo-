@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_ventilation_form" model="ir.ui.view">
+        <field name="name">mechanical.ventilation.form</field>
+        <field name="model">mechanical.ventilation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="situation"/>
+                            <field name="from_date"/>
+                        </group>
+                        <group>
+                            <field name="duration"/>
+                            <field name="ventilation_type"/>
+                            <field name="remarks"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_ventilation_tree" model="ir.ui.view">
+        <field name="name">mechanical.ventilation.tree</field>
+        <field name="model">mechanical.ventilation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="situation"/>
+                <field name="from_date"/>
+                <field name="duration"/>
+                <field name="ventilation_type"/>
+                <field name="remarks"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_ventilation" model="ir.actions.act_window">
+        <field name="name">VENTILATION</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mechanical.ventilation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
+

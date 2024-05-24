@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_helathcenterbeds_form" model="ir.ui.view">
+        <field name="name"> hospital.helathcenterbeds.form</field>
+        <field name="model">hospital.helathcenterbeds</field>
+        <field name="arch" type="xml">
+            <form string="hospital_helathcenterbeds_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- Tree View -->
+    <record id="view_hospital_helathcenterbeds_tree" model="ir.ui.view">
+        <field name="name">hospital.helathcenterbeds.tree</field>
+        <field name="model">hospital.helathcenterbeds</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_helathcenterbeds_tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+<!-- Search View -->
+    <record id="view_hospital_helathcenterbeds_search" model="ir.ui.view">
+        <field name="name">hospital.helathcenterbeds.search</field>
+        <field name="model">hospital.helathcenterbeds</field>
+        <field name="arch" type="xml">
+            <search string="hospital_helathcenterbeds_search">
+
+            </search>
+        </field>
+    </record>
+<!-- Action -->
+    <record id="action_hospital_helathcenterbeds" model="ir.actions.act_window">
+        <field name="name">Hospital Helathcenterbeds</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.helathcenterbeds</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a pharmacy!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

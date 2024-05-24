@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_bed_transfer_view_form" model="ir.ui.view">
+        <field name="name">create.bed.transfer.wizard.form</field>
+        <field name="model">create.bed.transfer.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Please Choose the new bed to allocate">
+                <group>
+                    <field name="new_bad"/>
+                    <!--                    <field name="date_trans"/>-->
+                    <field name="bed_from"/>
+                    <field name="to_bed"/>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <!--                    <button  name="print_report" string="print" class="btn-primary" type="object"/>-->
+                    <button id="button_create_transfer" name="action_bed_transfer" string="Transfer" class="btn-primary"
+                            type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <!--                    <button name="print_report" string="Print" class="btn-primary" type="object"/>-->
+
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_bed_transfer" model="ir.actions.act_window">
+        <field name="name">Create Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.bed.transfer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <!--In the form action-->
+    <record id="action_bed_transfer_link" model="ir.actions.act_window">
+        <field name="name">Bed Transfer</field>
+        <field name="res_model">create.bed.transfer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="Ramsam_Multispeciality_Hospital.create_bed_transfer_view_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="Ramsam_Multispeciality_Hospital.model_patient_hospitalization"/>
+        <field name="binding_view_types">form</field>
+    </record>
+
+
+
+
+
+</odoo>
+

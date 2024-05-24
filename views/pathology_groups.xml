@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_pathology_form" model="ir.ui.view">
+        <field name="name"> hospital.pathology.form</field>
+        <field name="model">hospital.pathology</field>
+        <field name="arch" type="xml">
+            <form string="hospital_pathology_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- Tree View -->
+    <record id="view_hospital_pathology_tree" model="ir.ui.view">
+        <field name="name">hospital.pathology.tree</field>
+        <field name="model">hospital.pathology</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_pathology_tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+<!-- Search View -->
+    <record id="view_hospital_pathology_search" model="ir.ui.view">
+        <field name="name">hospital.pathology.search</field>
+        <field name="model">hospital.pathology</field>
+        <field name="arch" type="xml">
+            <search string="hospital_pathology_search">
+
+            </search>
+        </field>
+    </record>
+<!-- Action -->
+    <record id="action_hospital_pathology" model="ir.actions.act_window">
+        <field name="name">Hospital pathology</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.pathology</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a pharmacy!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

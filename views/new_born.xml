@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_new_born_form" model="ir.ui.view">
+        <field name="name">hospital.newborn.form</field>
+        <field name="model">hospital.newborn</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                     <button id="button_confirmed" name="action_confirm" string="Confirm Registration"
+                            class="btn-primary"
+                            type="object"/>
+                    <button id="button_hospitalize" name="action_patient_admission" string="Patient Admission"
+                            class="btn-primary"
+                            type="object" attrs="{'invisible':[('state', '!=', 'confirmed')],
+                                                                'required': [('state', '=', 'confirmed')]
+                                                            }"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel Registration" class="btn-primary"
+                            type="object" attrs="{'invisible':[('state', '!=', 'confirmed')],
+                                                                'required': [('state', '=', 'confirmed')]
+                                                            }"/>
+                    <button id="button_discharge" name="action_discharge" string="Discharge Patient" class="btn-primary"
+                            type="object" attrs="{'invisible':[('state', '!=', 'hospitalize')],
+                                                                'required': [('state', '=', 'hospitalize')]
+                                                            }"/>
+                    <field name="state" widget="statusbar"/>
+
+                    <button id="button_print_report" name="%(report_patient_new_born_cards1)d" string="PRINT NEWBORN CARD"
+                            class="btn-primary" type="action"/>
+                </header>
+                <sheet>
+                    <h4>
+                        <field name="ref" readonly="1"/>
+                    </h4>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group string="Main">
+                        <group>
+                            <field name="baby_name"/>
+                            <field name="patient"/>
+                            <field name="gender"/>
+                            <field name="discharge"/>
+                            <field name="weight"/>
+                            <field name="blood"/>
+                            <field name="doctor_id"/>
+                        </group>
+                        <group>
+                            <field name="mother"/>
+                            <field name="dob"/>
+                            <field name="length"/>
+                            <field name="cephalic"/>
+                            <field name="hospital_bed"/>
+                            <field name="ward"/>
+                        </group>
+                    </group>
+                    <!--                    <notebook>-->
+                    <!--                        <page string="General Information">-->
+                    <!--                            <group string="PATIENT GENERAL INFORMATION">-->
+                    <!--                                <group>-->
+                    <!--                                    <field name="blood"/>-->
+                    <!--                                    <field name="ethnic"/>-->
+                    <!--                                    <field name="insurance"/>-->
+                    <!--                                </group>-->
+                    <!--                                <group>-->
+                    <!--                                    <field name="family"/>-->
+                    <!--                                    <field name="recive"/>-->
+                    <!--                                    <field name="dr"/>-->
+                    <!--                                </group>-->
+                    <!--                            </group>-->
+                    <!--                            <group string="DECEASED INFORMATION">-->
+                    <!--                                <field name="dece"/>-->
+                    <!--                            </group>-->
+                    <!--                            <group string="PTIENT INFORMATION">-->
+                    <!--                                <field name="note" placeholder="Extra information...."/>-->
+                    <!--                            </group>-->
+                    <!--                        </page>-->
+                    <!--                        <page string="Diseases">-->
+                    <!--                            <field name="disease_ids"/>-->
+                    <!--                        </page>-->
+                    <!--                        <page string="Medication">-->
+                    <!--                            <field name="medicament_ids"/>-->
+                    <!--                        </page>-->
+                    <!--                        <page string="Vaccinations">-->
+                    <!--                            <field name="vaccination_ids"/>-->
+                    <!--                        </page>-->
+                    <!--                        <page string="Lab test">-->
+                    <!--                            <field name="labtest_ids"/>-->
+                    <!--                        </page>-->
+                    <!--                    </notebook>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_new_born_tree" model="ir.ui.view">
+        <field name="name">hospital.newborn.tree</field>
+        <field name="model">hospital.newborn</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="baby_name"/>
+                <field name="patient"/>
+                <field name="gender"/>
+                <field name="dob"/>
+                <field name="discharge"/>
+                <field name="weight"/>
+                <field name="blood"/>
+                <field name="doctor_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hospital_new_born" model="ir.actions.act_window">
+        <field name="name">Hospital New Born Baby</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.newborn</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a New Born!!!!!!
+            </p>
+        </field>
+    </record>
+
+</odoo>

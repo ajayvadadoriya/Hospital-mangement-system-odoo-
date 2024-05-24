@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_icu_form" model="ir.ui.view">
+        <field name="name">patient.icu.form</field>
+        <field name="model">patient.icu</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_admit" name="action_admitted" string="ADMIT"
+                            class="btn-primary"
+                            type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" class="btn-primary"
+                            type="object"/>
+
+                    <button id="button_discharge" name="action_discharge" string="Discharge Patient" class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'admitted']), ('id', '=', False)]}"
+                            data-hotkey="z"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,admitted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="registration_code"/>
+                            <field name="discharge_date"/>
+                        </group>
+                        <group>
+                            <field name="icu_admission"/>
+                            <field name="duration"/>
+                            <field name="deceased"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mechanical Ventilation History">
+                            <field name="ventilation_ids" widget="one2many">
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_icu_tree" model="ir.ui.view">
+        <field name="name">patient.icu.tree</field>
+        <field name="model">patient.icu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="registration_code"/>
+                <field name="icu_admission"/>
+                <field name="discharge_date"/>
+                <field name="duration"/>
+                <field name="deceased"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_icu" model="ir.actions.act_window">
+        <field name="name">ICU</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.icu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+</odoo>
+

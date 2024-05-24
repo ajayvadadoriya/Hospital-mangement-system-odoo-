@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_family_member_form" model="ir.ui.view">
+        <field name="name">family.member.form</field>
+        <field name="model">family.member</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="phone"/>
+                        <field name="mail"/>
+                        <field name="sperson"/>
+                        <field name="act_ids"/>
+                        <field name="city"/>
+                        <field name="country"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_family_member_tree" model="ir.ui.view">
+        <field name="name">family.member.tree</field>
+        <field name="model">family.member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="mail"/>
+                <field name="sperson"/>
+                <field name="act_ids"/>
+                <field name="city"/>
+                <field name="country"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_family_member" model="ir.actions.act_window">
+        <field name="name">Member</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">family.member</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

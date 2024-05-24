@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_ecg_form" model="ir.ui.view">
+        <field name="name">patient.ecg.form</field>
+        <field name="model">patient.ecg</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ecg_date"/>
+                            <field name="registration_cod"/>
+                            <field name="lead"/>
+                            <field name="axis"/>
+                            <field name="rate"/>
+                            <field name="pacemaker"/>
+                        </group>
+                        <group>
+                            <field name="rhythm"/>
+                            <field name="pr"/>
+                            <field name="qrs"/>
+                            <field name="qt"/>
+                            <field name="segment"/>
+                            <field name="t_wave"/>
+                            <field name="interpretation"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_ecg_tree" model="ir.ui.view">
+        <field name="name">patient.ecg.tree</field>
+        <field name="model">patient.ecg</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ecg_date"/>
+                <field name="registration_cod"/>
+                <field name="lead"/>
+                <field name="axis"/>
+                <field name="rate"/>
+                <field name="pacemaker"/>
+                <field name="rhythm"/>
+                <field name="pr"/>
+                <field name="qrs"/>
+                <field name="qt"/>
+                <field name="segment"/>
+                <field name="t_wave"/>
+                <field name="interpretation"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_ecg" model="ir.actions.act_window">
+        <field name="name">ECG</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.ecg</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+
+</odoo>
+

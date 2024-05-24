@@ -1,55 +1,462 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--FOR CREATE MENU-->
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- MAIN MENU IS A HOSPITAL -->
-    <menuitem id="menu_hospital_root"
+
+    <!-- Main Side Menu -->
+    <menuitem id="hospital_root_menu"
               name="Hospital"
-              sequence="10"/>
-<!-- SUB MENU OF HOSPITAL -->
-    <menuitem id="menu_hospital_operations"
-              name="Operations"
-              parent="menu_hospital_root"
-              sequence="10"/>
-<!-- SUB MENU OF OPERATION -->
-    <menuitem id="menu_patients"
+              action=""/>
+    <!-- Hospital Patient Root Menu -->
+    <menuitem id="hospital_patient_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Patients Record"
+              sequence="1"
+              parent="hospital_root_menu"
+              action=""/>
+
+    <!--  Hospital Appointment Root Menu -->
+    <menuitem id="hospital_appointment_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Appointments Record"
+              sequence="2"
+              parent="hospital_root_menu"
+              action=""/>
+    <!--  Hospital Employee Root Menu -->
+    <menuitem id="hospital_employee_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_receptionist"
+              name="Nursing"
+              sequence="6"
+              parent="hospital_root_menu"
+              action=""/>
+    <!--  Hospital Pharmacy Root Menu -->
+    <menuitem id="hospital_pharmacy_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_chemist"
+              name="Pharmacy"
+              sequence="7"
+              parent="hospital_root_menu"
+              action=""/>
+
+    <menuitem id="hospital_configuration_root_menu"
+              name="Configuration"
+              sequence="14"
+              parent="hospital_root_menu"
+    />
+
+
+
+    <menuitem id="hospital_pediatric_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Pediatric"
+              sequence="5"
+              parent="hospital_root_menu"
+    />
+
+    <menuitem id="hospitalize_pediatric_menu"
+              name="Pediatric System Checklist"
+              sequence="0"
+              parent="hospital_pediatric_root_menu"
+              action="action_hospital_pediatric"/>
+
+
+
+
+    <menuitem id="hospital_patient_menu"
               name="Patients"
-              parent="menu_hospital_operations"
-              action="action_hospital_patient"
-              sequence="10"/>
-<!-- DOCTOR -->
-    <menuitem id="menu_hospital_master_data"
-              name="Master Data"
-              parent="menu_hospital_root"
-              sequence="10"/>
-    <menuitem id="menu_doctor"
-              name="Doctor"
-              parent="menu_hospital_master_data"
-              action="action_hospital_doctor"
-              sequence="10"/>
-<!-- APPOINTMENT -->
-    <menuitem id="menu_hospital_for_appointments"
-              name="Appointment"
-              parent="menu_hospital_root"
-              sequence="10"/>
-    <menuitem id="menu_appointments"
-              name="Appointment_List"
-              parent="menu_hospital_for_appointments"
-              action="action_hospital_appointment"
-              sequence="10"/>
-<!-- CREATE APPOINTMENT -->
-     <menuitem id="menu_create_appointments"
-              name="Create Appointment"
-              parent="menu_hospital_root"
-              sequence="20"/>
-<!-- KIDS -->
-    <menuitem id="menu_hospital_operations"
-              name="Operations"
-              parent="menu_hospital_root"
-              sequence="10"/>
-    <menuitem id="menu_patients_kids"
-              name="Kids"
-              parent="menu_hospital_operations"
-              action="action_hospital_kids"
-              sequence="20"/>
+              sequence="0"
+              parent="hospital_patient_root_menu"
+              action="action_hospital_patient"/>
+
+
+    <menuitem id="menu_family"
+              name="Family"
+              parent="hospital_patient_root_menu"
+              action="action_hospital_family"
+              sequence="0"/>
+
+
+    <menuitem id="hospitalize_patient_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Important Administration"
+              sequence="3"
+              parent="hospital_root_menu"
+              action=""/>
+
+    <menuitem id="menu_care"
+              name="Intensive Care"
+              parent="hospitalize_patient_root_menu"
+    />
+
+    <menuitem id="menu_icu"
+              name="Patient ICU info"
+              parent="menu_care"
+              action="action_icu"
+              sequence="0"/>
+
+    <menuitem id="menu_apache"
+              name="APACHE II Score"
+              parent="menu_care"
+              action="action_apache"
+              sequence="2"/>
+
+    <menuitem id="menu_ecg"
+              name="ECG"
+              parent="menu_care"
+              action="action_ecg"
+              sequence="3"/>
+
+    <menuitem id="menu_gcs"
+              name="GCS"
+              parent="menu_care"
+              action="action_gcs"
+              sequence="4"/>
+
+    <menuitem id="hospitalize_patient_menu"
+              name="Patent Hospitalization"
+              sequence="0"
+              parent="hospitalize_patient_root_menu"
+              action="action_patient_hospitalization"/>
+
+    <menuitem id="hospital_imaging_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Imaging"
+              sequence="4"
+              parent="hospital_root_menu"
+    />
+
+    <menuitem id="hospital_confirm_imaging_menu"
+              name="Create Imaging Result"
+              sequence="2"
+              parent="hospital_imaging_menu"
+              action="action_hospital_imaging"/>
+
+    <menuitem id="hospitalize_imaging_request_menu"
+              name="Create Imaging Request"
+              sequence="1"
+              parent="hospital_imaging_menu"
+              action="action_create_imaging_request"/>
+
+    <menuitem id="hospital_deceased_patient_menu"
+              name="Deceased Patients"
+              sequence="0"
+              parent="hospital_patient_root_menu"
+              action="action_deceased_hospital_patient"/>
+
+    <menuitem id="hospital_doctor_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_doctor"
+              name="Doctors Record"
+              sequence="3"
+              parent="hospital_root_menu"/>
+
+    <menuitem id="hospital_doctor_menu"
+              name="Doctors"
+              sequence="0"
+              parent="hospital_doctor_root_menu"
+              action="action_hospital_doctor"/>
+
+    <menuitem id="menu_prescription"
+              name="Prescription"
+              parent="hospital_patient_root_menu"
+              action="action_prescription"
+              sequence="0"/>
+
+    <menuitem id="hospital_appointment_menu"
+              name="Appointments"
+              sequence="0"
+              parent="hospital_appointment_root_menu"
+              action="action_hospital_appointment"/>
+
+    <menuitem id="hospital_employee_menu"
+              name="Patient Ambulatory Care"
+              sequence="0"
+              parent="hospital_employee_root_menu"
+              action="action_hospital_employee"/>
+
+    <menuitem id="hospital_pharmacy_menu"
+              name="Pharmacy"
+              sequence="0"
+              parent="hospital_pharmacy_root_menu"
+              action="action_hospital_pharmacy"/>
+
+
+    <menuitem id="hospital_configuration_menu"
+              name="Laboratory"
+              sequence="0"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus1"
+              name="Diseases"
+              sequence="1"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus2"
+              name="Categories"
+              sequence="2"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus3"
+              name="Imaging"
+              sequence="3"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus4"
+              name="Health Centers"
+              sequence="4"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus5"
+              name="Operational Areas"
+              sequence="5"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus6"
+              name="Physicians"
+              sequence="6"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus7"
+              name="Medicaments"
+              sequence="7"
+              parent="hospital_configuration_root_menu"
+    />
+
+
+    <menuitem id="hospital_vaccination_menu"
+              name="Vaccination "
+              sequence="1"
+              parent="hospital_configuration_menus7"
+              action="action_hospital_vaccination"/>
+
+    <menuitem id="hospital_configuration_menus8"
+              name="Insurances"
+              sequence="8"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus9"
+              name="Genetics"
+              sequence="9"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_configuration_menus10"
+              name="Misc"
+              sequence="11"
+              parent="hospital_configuration_root_menu"
+    />
+
+    <menuitem id="hospital_labtesting_menu"
+              name="Lab Testing Units"
+              sequence="1"
+              parent="hospital_configuration_menu"
+              action="action_hospital_labtesting"/>
+
+    <menuitem id="hospital_labtest_menu"
+              name="Lab Test Type"
+              sequence="1"
+              parent="hospital_configuration_menu"
+              action="action_hospital_labtest"/>
+
+    <menuitem id="hospital_pathology_menu"
+              name="Pathology Groups"
+              sequence="1"
+              parent="hospital_configuration_menus1"
+              action="action_hospital_pathology"/>
+
+    <menuitem id="hospital_diseases_menu"
+              name="Diseases"
+              sequence="1"
+              parent="hospital_configuration_menus1"
+              action="action_hospital_diseases"/>
+
+    <menuitem id="hospital_diseasecate_menu"
+              name="Disease categories"
+              sequence="1"
+              parent="hospital_configuration_menus2"
+              action="action_hospital_diseasecate"/>
+
+    <menuitem id="hospital_diseasecategories_menu"
+              name="Disease categories Structure"
+              sequence="1"
+              parent="hospital_configuration_menus2"
+              action="action_hospital_diseasecategories"/>
+
+    <menuitem id="hospital_geneticrisks_menu"
+              name="Genetic Risks"
+              sequence="1"
+              parent="hospital_configuration_menus9"
+              action="action_hospital_geneticrisks"/>
+
+    <menuitem id="hospital_helathcenter_menu"
+              name="Health Center"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_helathcenter"/>
+
+    <menuitem id="hospital_helathcenterbeds_menu"
+              name="Health Center beds"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_helathcenterbeds"/>
+
+    <menuitem id="hospital_helathcenterbuildings_menu"
+              name="Health Center Building"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_helathcenterbuildings"/>
+
+    <menuitem id="hospital_helathcenterunits_menu"
+              name="Health Center Units"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_helathcenterunits"/>
+
+    <menuitem id="hospital_helathcenterwards_menu"
+              name="Health Center wards"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_helathcenterwards"/>
+
+    <menuitem id="hospital_operating_menu"
+              name="Hospital Operating Rooms"
+              sequence="1"
+              parent="hospital_configuration_menus4"
+              action="action_hospital_operating"/>
+
+    <menuitem id="hospital_imaging_request_menu"
+              name="Imaging Request"
+              parent="hospital_imaging_menu"
+              />
+
+    <menuitem id="hospital_imagingtest_menu"
+              name="All Request"
+              sequence="3"
+              parent="hospital_imaging_request_menu"
+              action="action_hospital_imagingtest"/>
+
+    <menuitem id="hospital_imaging_draft_menu"
+              name="Draft Request"
+              sequence="4"
+              parent="hospital_imaging_request_menu"
+              action="action_imaging_draft"/>
+
+    <menuitem id="hospital_imaging_confirm_menu"
+              name="Confirm Request"
+              sequence="5"
+              parent="hospital_imaging_request_menu"
+              action="action_imaging_confirm"/>
+
+    <menuitem id="hospital_imaging_done_menu"
+              name="Done Request"
+              sequence="6"
+              parent="hospital_imaging_request_menu"
+              action="action_imaging_done"/>
+
+    <menuitem id="hospital_imaging_done_menu"
+              name="Canceled Request"
+              sequence="7"
+              parent="hospital_imaging_request_menu"
+              action="action_imaging_cancel"/>
+
+    <menuitem id="hospital_imagingtype_menu"
+              name="Imaging Test Type"
+              sequence="1"
+              parent="hospital_configuration_menus3"
+              action="action_hospital_imagingtype"/>
+
+    <menuitem id="hospital_insurances_menu"
+              name="Insurances"
+              sequence="1"
+              parent="hospital_configuration_menus8"
+              action="action_hospital_insurances"/>
+
+    <menuitem id="hospital_company_menu"
+              name="Insurances Company"
+              sequence="1"
+              parent="hospital_configuration_menus8"
+              action="action_hospital_company"/>
+
+    <menuitem id="hospital_medical_menu"
+              name="Medical Specialties"
+              sequence="1"
+              parent="hospital_configuration_menus10"
+              action="action_hospital_medical"/>
+
+
+    <menuitem id="hospital_routes_menu"
+              name="Medicament Administration Routes"
+              sequence="1"
+              parent="hospital_configuration_menus7"
+              action="action_hospital_routes"/>
+
+    <menuitem id="hospital_medicamentcategories_menu"
+              name="Medicament Categories"
+              sequence="1"
+              parent="hospital_configuration_menus7"
+              action="action_hospital_medicamentcategories"/>
+
+    <menuitem id="hospital_structure_menu"
+              name="Medicament Categories Structure"
+              sequence="1"
+              parent="hospital_configuration_menus7"
+              action="action_hospital_structure"/>
+
+    <menuitem id="hospital_form_menu"
+              name="Medicament Form"
+              sequence="1"
+              parent="hospital_configuration_menus7"
+              action="action_hospital_form"/>
+
+    <menuitem id="hospital_medicamentunits_menu"
+              name="Medicament Units"
+              sequence="1"
+              parent="hospital_configuration_menus10"
+              action="action_hospital_medicamentunits"/>
+
+    <menuitem id="hospital_medicaments_menu"
+              name="Medicament"
+              sequence="1"
+              parent="hospital_configuration_menus10"
+              action="action_hospital_medicaments"/>
+
+    <menuitem id="hospital_occupations_menu"
+              name="Occupations"
+              sequence="1"
+              parent="hospital_configuration_menus10"
+              action="action_hospital_occupations"/>
+
+
+    <menuitem id="hospital_areas_menu"
+              name="Operational Areas"
+              sequence="1"
+              parent="hospital_configuration_menus5"
+              action="action_hospital_areas"/>
+
+    <menuitem id="hospital_sectors_menu"
+              name="Operational Sectors"
+              sequence="1"
+              parent="hospital_configuration_menus5"
+              action="action_hospital_sectors"/>
+
+
+    <menuitem id="hospital_physicians_menu"
+              name="Physicians"
+              sequence="1"
+              parent="hospital_configuration_menus6"
+              action="action_hospital_physicians"/>
+
+    <menuitem id="hospital_recreationaldrugs_menu"
+              name="Recreational Drugs"
+              sequence="1"
+              parent="hospital_configuration_menus10"
+              action="action_hospital_recreationaldrugs"/>
+
+
+    <menuitem id="hospital_newborn_menu"
+              name="New Born"
+              sequence="2"
+              parent="hospital_pediatric_root_menu"
+              action="action_hospital_new_born"/>
+
+
+
+
 </odoo>

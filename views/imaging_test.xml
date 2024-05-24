@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_imagingtest_form" model="ir.ui.view">
+        <field name="name">hospital.imagingtest.form</field>
+        <field name="model">hospital.imagingtest</field>
+        <field name="arch" type="xml">
+            <form string="hospital_imagingtest_form">
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="CONFIRM" class="btn-primary"
+                            type="object" confirm="ARE YOU SURE?" attrs="{'invisible':[('state', '!=', 'draft')],
+                                                                'required': [('state', '=', 'draft')]
+                                                            }"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" class="btn-primary"
+                            type="object"/>
+                    <button id="button_done" name="action_done" string="CREATE RESULT"
+                            class="btn-primary"
+                            type="object" attrs="{'invisible':[('state', '!=', 'confirm')],
+                                                                'required': [('state', '=', 'confirm')]
+                                                            }"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ref"/>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="patient"/>
+                        </group>
+                        <group>
+                            <field name="physician"/>
+                            <field name="urgent"/>
+                            <field name="comment"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_imagingtest_tree" model="ir.ui.view">
+        <field name="name">hospital.imagingtest.tree</field>
+        <field name="model">hospital.imagingtest</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_imagingtest_tree">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="patient"/>
+                <field name="physician"/>
+                <field name="urgent"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="view_hospital_imagingtest_search" model="ir.ui.view">
+        <field name="name">hospital.imagingtest.search</field>
+        <field name="model">hospital.imagingtest</field>
+        <field name="arch" type="xml">
+            <search string="hospital_imagingtest_search">
+
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_hospital_imagingtest" model="ir.actions.act_window">
+        <field name="name">All Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imagingtest</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a Imaging!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_imaging_draft" model="ir.actions.act_window">
+        <field name="name">Draft Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imagingtest</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('state','=','draft')]</field>
+    </record>
+
+     <record id="action_imaging_confirm" model="ir.actions.act_window">
+        <field name="name">Confirm Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imagingtest</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('state','=','confirm')]</field>
+    </record>
+
+    <record id="action_imaging_done" model="ir.actions.act_window">
+        <field name="name">Confirm Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imagingtest</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('state','=','done')]</field>
+    </record>
+
+    <record id="action_imaging_cancel" model="ir.actions.act_window">
+        <field name="name">Cancel Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imagingtest</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('state','=','canceled')]</field>
+    </record>
+
+
+
+</odoo>

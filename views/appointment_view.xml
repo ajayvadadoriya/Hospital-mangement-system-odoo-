@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment.form</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form string="hospital_appointment_form">
+                <button name="whats_app_button" string="WhatsApp Share" type="object" data-hotkey="g"
+                                icon="fa-whatsapp"/>
+                <sheet>
+                    <header>
+                        <field name="ref"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="special_id"/>
+                            <field name="appointment_date"/>
+                            <field name="end_date"/>
+                            <field name="patient_status"/>
+                            <field name="invoice_exempt"/>
+                            <field name="status"/>
+                            <field name="validity"/>
+                        </group>
+                        <group>
+                            <field name="healthcenter"/>
+                            <field name="duration"/>
+                            <field name="urgency"/>
+                            <field name="invoice"/>
+                            <field name="insurance"
+                                   attrs="{'invisible':[('invoice', '!=', True)],'required': [('invoice', '=', True)]}"/>
+                            <field name="consultaion"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Comments">
+                            <field name="note" placeholder="Instruction/Note"/>
+                        </page>
+                        <page string="Insurance"
+                              attrs="{'invisible':[('invoice', '!=', True)],'required': [('invoice', '=', True)]}">
+                            <group>
+                                <field name="file" widget="Binary"/>
+                                <field name="pf_file" widget="Binary"/>
+                                <field name="bank_statement" widget="Binary"/>
+                                <field name="medical_bill" widget="Binary"/>
+                                <field name="policy_number" widget="Binary"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="special_id"/>
+                <field name="appointment_date"/>
+                <field name="end_date"/>
+                <field name="patient_status"/>
+                <field name="invoice_exempt"/>
+                <field name="status"/>
+                <field name="validity"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Activity View -->
+    <record id="view_hospital_appointment_activity" model="ir.ui.view">
+        <field name="name">hospital.appointment.activity</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <activity string="hospital_appointment_activity">
+                <!-- <field name="patient_id"/> -->
+                <templates>
+                    <div t-name="activity-box">
+                        <img t-att-src="activity_image('hospital.patient', 'image', record.patient_id.raw_value)"
+                             t-att-title="record.patient_id.value" t-att-alt="record.patient_id.value"/>
+                        <div>
+                            <field name="patient_id" display="full"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="view_hospital_appointment_search" model="ir.ui.view">
+        <field name="name">hospital.appointment.search</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <search string="hospital_appointment_search">
+            </search>
+        </field>
+    </record>
+
+    <!--calender view-->
+    <record id="view_my_calendar_model_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendar View" date_start="appointment_date" date_stop="end_date">
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+            </calendar>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_hospital_appointment" model="ir.actions.act_window">
+        <field name="name">Hospital Appointments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,kanban,form,activity,calendar</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a Appointment!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+
+</odoo>

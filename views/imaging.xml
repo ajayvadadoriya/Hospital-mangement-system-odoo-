@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_imaging_form" model="ir.ui.view">
+        <field name="name">hospital.imaging.form</field>
+        <field name="model">hospital.imaging</field>
+        <field name="arch" type="xml">
+            <form string="hospital_imaging_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="ref"/>
+                            <field name="rdate"/>
+                        </group>
+                        <group>
+                            <field name="test"/>
+                            <field name="patient"/>
+                            <field name="physician"/>
+                            <field name="comment"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Images">
+                            <field name="img_ids" widget="one2many">
+                            </field>
+                        </page>
+                        <page string="Information">
+                            <field name="note" placeholder="write.......">
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_imaging_tree" model="ir.ui.view">
+        <field name="name">hospital.imaging.tree</field>
+        <field name="model">hospital.imaging</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_imaging_tree">
+                <field name="ref"/>
+                <field name="test"/>
+                <field name="date"/>
+                <field name="patient"/>
+                <field name="physician"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Search View -->
+    <record id="view_hospital_imaging_search" model="ir.ui.view">
+        <field name="name">hospital.imaging.search</field>
+        <field name="model">hospital.imaging</field>
+        <field name="arch" type="xml">
+            <search string="hospital_imaging_search">
+
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_hospital_imaging" model="ir.actions.act_window">
+        <field name="name">Hospital imaging</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.imaging</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a pharmacy!!!!!!
+            </p>
+        </field>
+    </record>
+
+</odoo>

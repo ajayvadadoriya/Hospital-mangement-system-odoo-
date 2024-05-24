@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_hospital_doctor_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form string="hospital_doctor_form">
+                <sheet>
+                    <h4>
+                        <field name="ref" readonly="1"/>
+                    </h4>
+                    <field name="doctor_image" widget="image" class="oe_avatar"/>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="first_name" string="First Name" class="oe_edit_only"/>
+                            <field name="first_name"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="middle_name" string="Middle Name" class="oe_edit_only"/>
+                            <field name="middle_name"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="last_name" string="Last Name" class="oe_edit_only"/>
+                            <field name="last_name"/>
+                        </div>
+                    </div>
+                    <group string="Basic Information">
+                        <group>
+                            <field name="gender"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                        </group>
+                    </group>
+                    <group string="Education and Work Information">
+                        <group>
+                            <field name="education"/>
+                            <field name="specialization"/>
+                        </group>
+                        <group>
+                            <field name="experience"/>
+                            <field name="join_date"/>
+                        </group>
+                    </group>
+                    <group string="Address Information">
+                        <group>
+                            <field name="address"/>
+                            <field name="city"/>
+                        </group>
+                        <group>
+                            <field name="pin_code"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="hospital_doctor_tree">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hospital_doctor" model="ir.actions.act_window">
+        <field name="name">Hospital Doctor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create a Doctor!!!!!!
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

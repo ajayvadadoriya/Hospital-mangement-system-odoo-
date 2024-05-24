@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_prescription_form" model="ir.ui.view">
+        <field name="name">patient.prescription.form</field>
+        <field name="model">patient.prescription</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="PATIENT AND DOCTOR INFORMATION">
+                        <group>
+                            <field name="patient"/>
+                            <field name="presdate"/>
+                            <field name="phar_id"/>
+                        </group>
+                        <group>
+                            <field name="ref"/>
+                            <field name="login"/>
+                            <field name="pd"/>
+                            <field name="iti"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prescription Detail">
+                            <field name="p_ids">
+                            </field>
+                        </page>
+                        <page string="Images">
+                            <field name="img_ids">
+                            </field>
+                        </page>
+                    </notebook>
+                    <group string="NOTES">
+                        <field name="note" placeholder="Write...."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_prescription_tree" model="ir.ui.view">
+        <field name="name">patient.prescription.tree</field>
+        <field name="model">patient.prescription</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="patient"/>
+                <field name="pd"/>
+                <field name="presdate"/>
+                <field name="phar_id"/>
+                <field name="iti"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_prescription" model="ir.actions.act_window">
+        <field name="name">Prescription</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.prescription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

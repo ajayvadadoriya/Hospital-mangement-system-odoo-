@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_imaging_request_view_form" model="ir.ui.view">
+        <field name="name">create.imaging.request.wizard.form</field>
+        <field name="model">create.imaging.request.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Please Choose the new bed to allocate">
+                <group>
+                    <field name="date"/>
+                    <field name="patient"/>
+                    <field name="physician"/>
+                    <field name="urgent"/>
+                    <field name="test_name"/>
+                    <field name="test_code"/>
+                    <field name="service"/>
+                    <field name="test_type"/>
+                </group>
+                <footer>
+                    <button id="button_create_request" name="action_create_request" string="CREATE REQUEST"
+                            class="btn-primary"
+                            type="object" />
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_imaging_request" model="ir.actions.act_window">
+        <field name="name">Create Imaging Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.imaging.request.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>
+

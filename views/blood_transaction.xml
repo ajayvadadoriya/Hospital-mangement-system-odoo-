@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_blood_transaction_view_form" model="ir.ui.view">
+        <field name="name">blood.transaction.form</field>
+        <field name="model">blood.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="donors_id"/>
+                    <field name="blood_group"/>
+                    <field name="blood_type"/>
+                    <field name="transfer_date"/>
+                    <field name="quantity"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_blood_transaction_tree" model="ir.ui.view">
+        <field name="name">blood.transaction.tree</field>
+        <field name="model">blood.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="donors_id"/>
+                <field name="blood_group"/>
+                <field name="blood_type"/>
+                <field name="transfer_date"/>
+                <field name="quantity"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_blood_transaction" model="ir.actions.act_window">
+        <field name="name">Blood Transaction</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">blood.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hospital_blood_transaction_menu"
+              name="Blood Transaction"
+              sequence="2"
+              parent="hospital_blood_root_menu"
+              action="action_blood_transaction"
+    />
+</odoo>
+

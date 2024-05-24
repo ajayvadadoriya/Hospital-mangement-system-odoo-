@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_prescription_lines_form" model="ir.ui.view">
+        <field name="name">patient.prescription_lines.form</field>
+        <field name="model">patient.prescription_lines</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="print"/>
+                        <field name="medi_id"/>
+                        <field name="indi"/>
+                        <field name="dose"/>
+                        <field name="doseuni"/>
+                        <field name="form"/>
+                        <field name="freq"/>
+                        <field name="qtn"/>
+                        <field name="time"/>
+                        <field name="allows"/>
+                        <field name="comment"/>
+                        <field name="p_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_prescription_lines_tree" model="ir.ui.view">
+        <field name="name">patient.prescription_lines.tree</field>
+        <field name="model">patient.prescription_lines</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="print"/>
+                <field name="medi_id"/>
+                <field name="indi"/>
+                <field name="dose"/>
+                <field name="doseuni"/>
+                <field name="form"/>
+                <field name="freq"/>
+                <field name="qtn"/>
+                <field name="time"/>
+                <field name="allows"/>
+                <field name="comment"/>
+                <field name="p_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_prescription_lines" model="ir.actions.act_window">
+        <field name="name">Prescription Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.prescription_lines</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

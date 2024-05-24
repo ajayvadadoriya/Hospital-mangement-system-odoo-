@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_hospital_medical_service_form" model="ir.ui.view">
+        <field name="name">medical.service.form</field>
+        <field name="model">medical.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="ref"/>
+                        <field name="description"/>
+                        <field name="patient_id"/>
+                        <field name="date_med"/>
+                    </group>
+                    <field name="service_ids">
+                        <tree editable="Bottom">
+                            <field name="invoice"/>
+                            <field name="des"/>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="view_hospital_medical_service_tree" model="ir.ui.view">
+        <field name="name">medical.service.tree</field>
+        <field name="model">medical.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="description"/>
+                <field name="patient_id"/>
+                <field name="date_med"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hospital_medical_service" model="ir.actions.act_window">
+        <field name="name">Hospital Surgery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+
+    <menuitem id="hospital_medical_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_medical_group"
+              name="Medical Service"
+              sequence="13"
+              parent="hospital_root_menu"
+    />
+    <menuitem id="hospital_medical_node_menu"
+              name="Medical Services"
+              sequence="0"
+              parent="hospital_medical_root_menu"
+              action="action_hospital_medical_service"
+    />
+
+</odoo>

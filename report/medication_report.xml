@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_patient_medication_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs.medicament_ids" t-as="doc">
+                    <div class="page">
+                        <h1>Patient Medication History</h1>
+                        <ul>
+                            <li>Patient:
+                                <span t-field="doc.patient_name"/>
+                            </li>
+                            <li>Patient ID:
+                                <span t-field="doc.patient_id"/>
+                            </li>
+                            <li>Age:
+                                <span t-field="doc.patient_age"/>
+                            </li>
+                            <li>Date:
+                                <span t-field="doc.date"/>
+                            </li>
+                            <li>Sex:
+                                <span t-field="doc.sex"/>
+                            </li>
+                            <li>Medicament:
+                                <span t-field="doc.name"/>
+                            </li>
+                            <li>Indication:
+                                <span t-field="doc.indication"/>
+                            </li>
+                             <li>Start:
+                                <span t-field="doc.start_date"/>
+                            </li>
+                             <li>End:
+                                <span t-field="doc.end_date"/>
+                            </li>
+                            <li>Act:
+                                <span t-field="doc.act"/>
+                            </li>
+                            <li>Doctor:
+                                <span t-field="doc.doctor"/>
+                            </li>
+<!--                            #FOR MANY2MANY FIELD-->
+<!--                            <t t-foreach="doc.tag_ids" t-as="v">-->
+<!--                                <span t-field="doc.name"/>-->
+<!--                            </t>-->
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_patient_prescription_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h1>Prescription Report</h1>
+                        <ul>
+                            <li>Prescription ID:
+                                <span t-field="doc.ref"/>
+                            </li>
+                            <li>Prescription Date:
+                                <span t-field="doc.presdate"/>
+                            </li>
+                            <li>Prescribing Doctor:
+                                <span t-field="doc.pd"/>
+                            </li>
+                            <li>Patient Contact Information:
+                                <span t-field="doc.login"/>
+                            </li>
+                            <h1>Prescription Detail</h1>
+                            <t t-foreach="doc.p_ids" t-as="line">
+                                <li>Quantity:
+                                    <span t-field="line.qtn"/>
+                                </li>
+                                <li>Medicament:
+                                    <span t-field="line.medi_id"/>
+                                </li>
+                                <li>Substitution:
+                                    <span t-field="line.allows"/>
+                                </li>
+                                <li>Form:
+                                    <span t-field="line.form"/>
+                                </li>
+                                <li>Indication:
+                                    <span t-field="line.indi"/>
+                                </li>
+                                <li>Common Dosage:
+                                    <span t-field="line.dose"/>
+                                </li>
+                                <li>Frequency:
+                                    <span t-field="line.freq"/>
+                                </li>
+                                <li>Treatment:
+                                    <span t-field="line.time"/>
+                                </li>
+                            </t>
+                            <!--                            #FOR MANY2MANY FIELD-->
+                            <!--                            <t t-foreach="doc.tag_ids" t-as="v">-->
+                            <!--                                <span t-field="doc.name"/>-->
+                            <!--                            </t>-->
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

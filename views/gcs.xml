@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hospital_gcs_form" model="ir.ui.view">
+        <field name="name">patient.gcs.form</field>
+        <field name="model">patient.gcs</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="registration_cod"/>
+                            <field name="gcs_date"/>
+                            <field name="eyes"/>
+                            <field name="verbal"/>
+                            <field name="motor"/>
+                            <field name="glasgow"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_hospital_gcs_tree" model="ir.ui.view">
+        <field name="name">patient.gcs.tree</field>
+        <field name="model">patient.gcs</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="registration_cod"/>
+                <field name="gcs_date"/>
+                <field name="eyes"/>
+                <field name="verbal"/>
+                <field name="motor"/>
+                <field name="glasgow"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_gcs" model="ir.actions.act_window">
+        <field name="name">GCS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.gcs</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+</odoo>
+

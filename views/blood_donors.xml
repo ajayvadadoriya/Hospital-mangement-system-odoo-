@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_blood_donors_form" model="ir.ui.view">
+        <field name="name">blood.donors.form</field>
+        <field name="model">blood.donors</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_transfer_blood" name="%(action_create_blood_transfer)d"
+                            string="DONATE" class="btn-primary" type="action"/>
+                    <button id="button_buy_blood" name="%(action_create_blood_take)d"
+                            string="TAKE BLOOD" class="btn-primary" type="action"/>
+                </header>
+                <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button name="action_open_transaction" type="object" class="oe_stat_button" icon="fa-truck">
+                                <div class="o_stat_info">
+                                    <field name="donate_count" class="o_stat_value"/>
+                                    <span class="o_stat_text"> Donated</span>
+                                </div>
+                            </button>
+                         <button name="action_open_take" type="object" class="oe_stat_button" icon="fa-truck">
+                                <div class="o_stat_info">
+                                    <field name="buy_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Take</span>
+                                </div>
+                            </button>
+                    </div>
+                    <header>
+                        <field name="donor_name"/>
+                    </header>
+                    <group>
+                        <field name="donor_id"/>
+                        <field name="blood_group"/>
+                        <field name="phone"/>
+                    </group>
+                    <group>
+                        <field name="e_mail"/>
+                        <field name="balance"/>
+                        <field name="consent"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- FOR TREE VIEW -->
+    <record id="view_blood_donors_tree" model="ir.ui.view">
+        <field name="name">family.member.tree</field>
+        <field name="model">blood.donors</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="donor_id"/>
+                <field name="blood_group"/>
+                <field name="phone"/>
+                <field name="e_mail"/>
+                <field name="balance"/>
+                <field name="consent"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_blood_donors" model="ir.actions.act_window">
+        <field name="name">Blood Donors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">blood.donors</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hospital_blood_root_menu" groups="Ramsam_Multispeciality_Hospital.group_hospital_medical_group"
+              name="Blood Bank"
+              sequence="11"
+              parent="hospital_root_menu"
+    />
+    <menuitem id="hospital_blood_node_menu"
+              name="Blood Donors"
+              sequence="0"
+              parent="hospital_blood_root_menu"
+              action="action_blood_donors"
+    />
+
+
+</odoo>
